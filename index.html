@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 ДР-распродажа — Екатерина Бехтерева</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --purple-deep: #1a0a2e;
+            --purple-dark: #2d1254;
+            --purple-main: #7c3aed;
+            --purple-light: #a78bfa;
+            --purple-pale: #c4b5fd;
+            --gold: #f5c842;
+            --gold-light: #fde68a;
+            --cream: #fdf6e3;
+            --white: #ffffff;
+            --text-muted: rgba(255,255,255,0.6);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--purple-deep);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── CONFETTI ── */
+        .confetti-container {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute; top: -20px;
+            width: 8px; height: 8px;
+            border-radius: 2px;
+            animation: confettiFall linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ── AMBIENT ORBS ── */
+        .orb {
+            position: fixed; border-radius: 50%;
+            filter: blur(80px); pointer-events: none; z-index: 0;
+        }
+        .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,58,237,.25), transparent); top: -100px; right: -100px; }
+        .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,200,66,.15), transparent); bottom: 20%; left: -150px; }
+        .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(167,139,250,.2), transparent); top: 50%; right: 10%; }
+
+        /* ── LAYOUT ── */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        section { padding: 80px 0; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 60% 40%, rgba(124,58,237,.4) 0%, transparent 70%);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(245,200,66,.15);
+            border: 1px solid rgba(245,200,66,.4);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-size: 13px; font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--gold), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+
+        /* ── COUNTDOWN ── */
+        .countdown-wrap {
+            margin-bottom: 36px;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .countdown {
+            display: flex; gap: 12px;
+        }
+
+        .countdown-item {
+            background: rgba(124,58,237,.2);
+            border: 1px solid rgba(167,139,250,.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: center;
+            min-width: 72px;
+        }
+
+        .countdown-num {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--white);
+            display: block;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-unit {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .hero-cta {
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+
+        /* ── DISCOUNT HERO BLOCK ── */
+        .discount-hero-block {
+            display: flex; align-items: center; gap: 0;
+            background: rgba(245,200,66,.1);
+            border: 1px solid rgba(245,200,66,.35);
+            border-radius: 20px;
+            padding: 20px 28px;
+            margin-bottom: 28px;
+        }
+
+        .discount-hero-item {
+            flex: 1; text-align: center;
+        }
+
+        .discount-hero-num {
+            display: block;
+            font-size: 36px; font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .discount-hero-label {
+            font-size: 12px;
+            color: rgba(255,255,255,.65);
+            line-height: 1.4;
+        }
+
+        .discount-hero-divider {
+            width: 1px; height: 48px;
+            background: rgba(245,200,66,.25);
+            flex-shrink: 0;
+            margin: 0 4px;
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8a800 100%);
+            color: #1a0a2e;
+            font-weight: 700; font-size: 15px;
+            padding: 16px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all .3s ease;
+            border: none; cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245,200,66,.4);
+        }
+
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent;
+            border: 2px solid rgba(167,139,250,.5);
+            color: var(--purple-pale);
+            font-weight: 600; font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all .3s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--purple-light);
+            color: var(--white);
+            background: rgba(124,58,237,.2);
+        }
+
+        /* ── HERO PHOTO ── */
+        .hero-photo {
+            position: relative;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 24px;
+            position: relative; z-index: 1;
+            display: block;
+        }
+
+        .hero-photo::before {
+            content: '';
+            position: absolute; inset: -3px;
+            border-radius: 27px;
+            background: linear-gradient(135deg, var(--gold), var(--purple-main), var(--gold));
+            z-index: 0;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0%, 100% { background: linear-gradient(135deg, var(--gold), var(--purple-main)); }
+            50% { background: linear-gradient(315deg, var(--gold), var(--purple-main)); }
+        }
+
+        .photo-badge {
+            position: absolute; bottom: 25px; left: -20px;
+            background: linear-gradient(135deg, rgba(35, 12, 65, 0.95), rgba(26, 10, 46, 0.98));
+            border: 2px solid rgba(245, 200, 66, 0.7);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 200, 66, 0.25);
+            border-radius: 20px;
+            padding: 18px 24px;
+            z-index: 2;
+            backdrop-filter: blur(12px);
+        }
+
+        .photo-badge strong {
+            display: block;
+            font-size: 26px; font-weight: 900;
+            color: var(--gold);
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+        }
+
+        .photo-badge span {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* ── ABOUT ── */
+        .about { padding: 60px 0; }
+
+        .about-inner {
+            background: rgba(124,58,237,.1);
+            border: 1px solid rgba(167,139,250,.2);
+            border-radius: 24px;
+            padding: 48px;
+            display: flex; gap: 48px; align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 26px; font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .about-stats {
+            display: flex; gap: 32px;
+            flex-shrink: 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 36px; font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+
+        /* ── PRODUCTS ── */
+        .products { padding: 80px 0; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .product-card {
+            background: rgba(45,18,84,.5);
+            border: 1px solid rgba(167,139,250,.2);
+            border-radius: 24px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s ease, border-color .3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167,139,250,.5);
+        }
+
+        .product-card.featured {
+            border-color: rgba(245,200,66,.4);
+            background: rgba(45,18,84,.7);
+        }
+
+        .product-card.featured::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--purple-light));
+        }
+
+        .product-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .product-tag {
+            display: inline-block;
+            background: rgba(245,200,66,.15);
+            border: 1px solid rgba(245,200,66,.3);
+            color: var(--gold);
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .product-tag.purple {
+            background: rgba(124,58,237,.2);
+            border-color: rgba(167,139,250,.3);
+            color: var(--purple-pale);
+        }
+
+        .product-card h3 {
+            font-size: 22px; font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .product-features li {
+            font-size: 14px;
+            padding: 6px 0;
+            color: rgba(255,255,255,.85);
+            display: flex; align-items: flex-start; gap: 8px;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            color: var(--purple-light);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── TIERS (for courses) ── */
+        .tiers {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .tier {
+            background: rgba(26,10,46,.6);
+            border: 1px solid rgba(167,139,250,.2);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tier.best {
+            border-color: rgba(245,200,66,.5);
+            background: rgba(245,200,66,.05);
+        }
+
+        .tier-label {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .tier.best .tier-label { color: var(--gold); }
+
+        .price-old {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .price-new {
+            font-size: 28px; font-weight: 900;
+            color: var(--white);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .tier.best .price-new { color: var(--gold); }
+
+        .tier-includes {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* ── SINGLE PRICE ── */
+        .product-price-wrap {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .product-price-new {
+            font-size: 34px; font-weight: 900;
+            color: var(--gold);
+        }
+
+        .product-price-old {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: rgba(245,200,66,.2);
+            border: 1px solid rgba(245,200,66,.4);
+            color: var(--gold);
+            font-size: 12px; font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        /* ── BUTTONS ── */
+        .btn-tg {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            background: linear-gradient(135deg, #2AABEE, #229ED9);
+            color: white;
+            font-weight: 700; font-size: 14px;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            width: 100%;
+            transition: all .3s ease;
+            border: none; cursor: pointer;
+        }
+
+        .btn-tg:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42,171,238,.4);
+        }
+
+        .btn-tg-gold {
+            background: linear-gradient(135deg, var(--gold), #e8a800);
+            color: #1a0a2e;
+        }
+
+        .btn-tg-gold:hover {
+            box-shadow: 0 8px 20px rgba(245,200,66,.4);
+        }
+
+        /* ── PHOTO ACCENT ── */
+        .accent-section {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .accent-photo-wrap {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .accent-photo-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+        }
+
+        .accent-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, var(--purple-deep) 0%, rgba(26,10,46,.7) 40%, rgba(26,10,46,.3) 70%, transparent 100%);
+            display: flex; align-items: center;
+        }
+
+        .accent-text {
+            max-width: 480px;
+            padding: 0 60px;
+        }
+
+        .accent-text h2 {
+            font-size: 36px; font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .accent-text p {
+            font-size: 17px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── REVIEWS ── */
+        .reviews { padding: 80px 0; }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .review-card {
+            background: rgba(45, 18, 84, 0.55);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(245, 200, 66, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .review-card.featured-review {
+            border-color: rgba(245, 200, 66, 0.5);
+            background: rgba(45, 18, 84, 0.75);
+        }
+
+        .review-card.featured-review::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--purple-light));
+        }
+
+        .review-author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 2px solid rgba(245, 200, 66, 0.6);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(45, 18, 84, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .review-avatar img.avatar-marina {
+            object-position: center 20%;
+        }
+
+        .review-avatar img.avatar-sveta {
+            object-position: center 18%;
+        }
+
+        .review-avatar img.avatar-ekaterina {
+            object-position: center 15%;
+        }
+
+        .review-meta h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .review-meta .review-role {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .review-service-badge {
+            display: inline-block;
+            background: rgba(245, 200, 66, 0.15);
+            border: 1px solid rgba(245, 200, 66, 0.3);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin-top: 4px;
+        }
+
+        .review-img-wrap {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-height: 340px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .review-img-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .review-highlight {
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(26, 10, 46, 0.55);
+            border-left: 3px solid var(--purple-light);
+            padding: 10px 14px;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        /* ── HOW TO BUY ── */
+        .how { padding: 80px 0; }
+
+        .how-steps {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+
+        .how-step {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(124,58,237,.08);
+            border: 1px solid rgba(167,139,250,.15);
+            border-radius: 20px;
+        }
+
+        .how-step-num {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--purple-main), var(--purple-light));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 900;
+            margin: 0 auto 16px;
+        }
+
+        .how-step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .how-step p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .final-cta .countdown { justify-content: center; margin-bottom: 48px; }
+
+        .final-buttons {
+            display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+        }
+
+        .final-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 32px;
+            border-radius: 50px;
+            font-weight: 700; font-size: 15px;
+            text-decoration: none;
+            transition: all .3s ease;
+        }
+
+        .final-btn-gold {
+            background: linear-gradient(135deg, var(--gold), #e8a800);
+            color: #1a0a2e;
+        }
+
+        .final-btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(245,200,66,.4);
+        }
+
+        .final-btn-purple {
+            background: rgba(124,58,237,.2);
+            border: 2px solid rgba(124,58,237,.5);
+            color: var(--purple-pale);
+        }
+
+        .final-btn-purple:hover {
+            background: rgba(124,58,237,.4);
+            border-color: var(--purple-main);
+            color: white;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid rgba(167,139,250,.1);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex; justify-content: center; gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover { color: var(--purple-light); }
+
+        footer p { font-size: 12px; color: rgba(255,255,255,.3); line-height: 1.6; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-photo { order: -1; max-width: 340px; margin: 0 auto; }
+            .products-grid { grid-template-columns: 1fr; }
+            .product-card.full-width { grid-column: 1; }
+            .tiers { grid-template-columns: 1fr; }
+            .about-inner { flex-direction: column; text-align: center; }
+            .about-stats { justify-content: center; }
+            .how-steps { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .accent-text { padding: 0 24px; }
+            .accent-text h2 { font-size: 26px; }
+            .countdown { gap: 8px; }
+            .countdown-item { min-width: 60px; padding: 10px 12px; }
+            .countdown-num { font-size: 24px; }
+            .final-buttons { flex-direction: column; align-items: center; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Confetti -->
+<div class="confetti-container" id="confetti"></div>
+
+<!-- Ambient Orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<header class="hero">
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <h1>
+                У меня скоро ДР —<br>
+                и я дарю<br>
+                <span class="highlight">скидки вам</span>
+            </h1>
+            <p class="hero-sub">
+                Все мои продукты по специальным ценам. Один раз в год. Только до 16 сентября.
+            </p>
+
+            <div class="countdown-wrap">
+                <div class="countdown-label">⏳ До конца распродажи</div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="cd-days">00</span>
+                        <div class="countdown-unit">дней</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="cd-hours">00</span>
+                        <div class="countdown-unit">часов</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="cd-mins">00</span>
+                        <div class="countdown-unit">минут</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="cd-secs">00</span>
+                        <div class="countdown-unit">секунд</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#products" class="btn-primary">🎁 Смотреть предложения</a>
+                <a href="https://t.me/katikok_smm" target="_blank" class="btn-outline">Написать в Telegram</a>
+            </div>
+        </div>
+
+        <div class="hero-photo">
+            <img src="photo_hero.jpg" alt="Екатерина Бехтерева" loading="eager">
+            <div class="photo-badge">
+                <strong>Скидки от 50%</strong>
+                <span>только до 16 сент. 🎂</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+<section class="about">
+    <div class="container">
+        <div class="about-inner">
+            <div class="about-text">
+                <h2>Привет, я Катя 👋</h2>
+                <p>
+                    Основатель агентства «Фиолетовая Морковь». 7+ лет в SMM и рекламе у блогеров.
+                    Работаю с брендами, обучаю менеджеров по рекламе и помогаю блогерам зарабатывать на интеграциях. В честь своего Дня Рождения сделала специальные цены на всё, чтобы как можно больше людей начали зарабатывать удалённо и на своих блогах.
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-num">7+</span>
+                    <span class="stat-label">лет<br>в нише</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">100+</span>
+                    <span class="stat-label">рекламных<br>кампаний</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">🥕</span>
+                    <span class="stat-label">закрытое<br>комьюнити</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ PRODUCTS ═══════════════════════ -->
+<section class="products" id="products">
+    <div class="container">
+        <div class="section-header">
+            <h2>🎁 Все предложения</h2>
+            <p>Выбирай то, что подходит именно тебе</p>
+        </div>
+
+        <div class="products-grid">
+
+            <!-- КУРС -->
+            <div class="product-card featured full-width">
+                <div class="product-tag">🌍 Для всех кто ищет удалённую работу</div>
+                <h3>Профессия: менеджер по закупке рекламы у блогеров</h3>
+                <p class="product-desc">
+                    Записи уроков из реальной практики агентства. Освой профессию, которая нужна всем брендам — и зарабатывай удалённо из любой точки мира.
+                </p>
+                <ul class="product-features">
+                    <li>Как отбирать блогеров, которые приносят продажи брендам</li>
+                    <li>Какие есть этапы работы с блогерами: от поиска до анализа рекламы</li>
+                    <li>Где искать проекты и клиентов</li>
+                    <li>Шаблоны, скрипты и таблицы из агентства</li>
+                </ul>
+                <div class="tiers">
+                    <div class="tier">
+                        <div class="tier-label">Самостоятельно</div>
+                        <span class="price-old">6 000 руб</span>
+                        <span class="price-new">1 000 ₽</span>
+                        <div class="tier-includes">Доступ к записям уроков</div>
+                        <a href="https://t.me/katikok_smm" target="_blank" class="btn-tg">
+                            Написать «УРОКИ»
+                        </a>
+                    </div>
+                    <div class="tier best">
+                        <div class="tier-label">⭐ С поддержкой + агентство</div>
+                        <span class="price-old">15 000 руб</span>
+                        <span class="price-new">3 000 ₽</span>
+                        <div class="tier-includes">Уроки + обратная связь + вход в агентство на практику</div>
+                        <a href="https://t.me/katikok_smm" target="_blank" class="btn-tg btn-tg-gold">
+                            Написать «С ПОДДЕРЖКОЙ»
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СТАРТЕР-ПАК -->
+            <div class="product-card">
+                <div class="product-tag purple">📱 Для блогеров и UGC-креаторов</div>
+                <h3>Стартер-пак: полный набор инструментов для монетизации блога</h3>
+                <p class="product-desc">Рабочие файлы, скрипты, инструкции и шаблоны. Берёшь и сразу внедряешь.</p>
+                <ul class="product-features">
+                    <li>CRM-таблица для учёта работы с брендами</li>
+                    <li>Скрипты писем — чтобы не игнорировали</li>
+                    <li>Таблица метрик (ER/CTR/CPM)</li>
+                    <li>Стратегия роста на РФ и зарубежном рынке</li>
+                    <li>10 AI-промптов для контента</li>
+                    <li>Шаблоны брифов и договоров</li>
+                </ul>
+                <div class="product-price-wrap">
+                    <span class="product-price-new">995 ₽</span>
+                    <span class="product-price-old">1 990 руб</span>
+                    <span class="discount-badge">−50%</span>
+                </div>
+                <a href="https://katikokbeh.github.io/starterpack-landing/" target="_blank" class="btn-tg">
+                    Забрать Стартер-пак
+                </a>
+            </div>
+
+            <!-- КОНСУЛЬТАЦИЯ -->
+            <div class="product-card">
+                <div class="product-tag">🎯 Для всех</div>
+                <h3>Личная консультация со мной</h3>
+                <p class="product-desc">60 минут разбираем именно твою ситуацию. Выходишь с конкретным планом, а не с советами «в общем».</p>
+                <ul class="product-features">
+                    <li>Аудит аккаунта глазами стратега</li>
+                    <li>Конкретный план действий на месяц</li>
+                    <li>Ответы на вопросы и стартер-пак в подарок 🎁</li>
+                </ul>
+                <div class="product-price-wrap">
+                    <span class="product-price-new">2 500 ₽</span>
+                    <span class="product-price-old">5 000 руб</span>
+                    <span class="discount-badge">−50%</span>
+                </div>
+                <a href="https://t.me/katikok_smm" target="_blank" class="btn-tg">
+                    Записаться на консультацию
+                </a>
+            </div>
+
+            <!-- СОПРОВОЖДЕНИЕ -->
+            <div class="product-card full-width">
+                <div class="product-tag">🚀 Для тех кто хочет большего</div>
+                <h3>Индивидуальное сопровождение</h3>
+                <p class="product-desc">
+                    Работаем вместе системно — стратегия, контент, упаковка, работа с брендами.
+                    Формат и объём определяем индивидуально.
+                </p>
+                <div class="product-price-wrap">
+                    <span class="product-price-new">от 15 000 ₽/мес</span>
+                    <span class="product-price-old">обычно от 45 000 руб</span>
+                    <span class="discount-badge">ДР-цена</span>
+                </div>
+                <p style="font-size:13px; color: var(--text-muted); margin-bottom: 20px;">
+                    Условия — индивидуально. Напиши и обсудим что тебе подходит.
+                </p>
+                <a href="https://t.me/katikok_smm" target="_blank" class="btn-tg" style="max-width: 320px;">
+                    Написать «СОПРОВОЖДЕНИЕ»
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ PHOTO ACCENT ═══════════════════════ -->
+<div class="accent-section">
+    <div class="accent-photo-wrap">
+        <img src="photo_accent.jpg" alt="Фиолетовая Морковь">
+        <div class="accent-overlay">
+            <div class="accent-text">
+                <h2>Один раз в год.<br>Только 14 дней.</h2>
+                <p>После 16 сентября скидки закроются и цены вернутся к стандартным. Это не маркетинговый трюк — просто мой ДР бывает раз в год.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════ REVIEWS ═══════════════════════ -->
+<section class="reviews" id="reviews">
+    <div class="container">
+        <div class="section-header">
+            <h2>💬 Говорят мои ученики и клиенты</h2>
+            <p>Реальные результаты реальных людей</p>
+        </div>
+        <div class="reviews-grid">
+            <!-- Отзыв 1 (слева): Марина -->
+            <div class="review-card">
+                <div class="review-author-info">
+                    <div class="review-avatar">
+                        <img src="avatar_marina.png" alt="Марина" class="avatar-marina">
+                    </div>
+                    <div class="review-meta">
+                        <h4>Марина</h4>
+                        <div class="review-role">Видеограф, UGC-креатор</div>
+                        <span class="review-service-badge">🎯 Консультация по блогу</span>
+                    </div>
+                </div>
+                <div class="review-highlight">
+                    «За лето блог вырос на 3000+ подписчиков... Катя показала слабые места, куда не распыляться, и появился конкретный план действий!»
+                </div>
+                <div class="review-img-wrap">
+                    <img src="review_marina.png" alt="Отзыв Марины — консультация по блогу">
+                </div>
+            </div>
+
+            <!-- Отзыв 2 (в центре): Светлана -->
+            <div class="review-card featured-review">
+                <div class="review-author-info">
+                    <div class="review-avatar" style="border-color: var(--gold); box-shadow: 0 0 15px rgba(245,200,66,0.4);">
+                        <img src="avatar_sveta.png" alt="Светлана" class="avatar-sveta">
+                    </div>
+                    <div class="review-meta">
+                        <h4>Светлана</h4>
+                        <div class="review-role">Мама в декрете</div>
+                        <span class="review-service-badge" style="background: rgba(245,200,66,0.2); border-color: rgba(245,200,66,0.5);">⭐ Обучение профессии</span>
+                    </div>
+                </div>
+                <div class="review-highlight">
+                    «Катя, спасибо за курс, все чётко по делу, без лишней воды. База, все инструменты, аналитика, быстрая обратная связь по ДЗ!»
+                </div>
+                <div class="review-img-wrap">
+                    <img src="review_svetlana.png" alt="Отзыв Светланы — обучение профессии">
+                </div>
+            </div>
+
+            <!-- Отзыв 3 (справа): Екатерина -->
+            <div class="review-card">
+                <div class="review-author-info">
+                    <div class="review-avatar">
+                        <img src="avatar_ekaterina.png" alt="Екатерина" class="avatar-ekaterina">
+                    </div>
+                    <div class="review-meta">
+                        <h4>Екатерина</h4>
+                        <div class="review-role">Дизайнер интерьеров</div>
+                        <span class="review-service-badge">🚀 Сопровождение</span>
+                    </div>
+                </div>
+                <div class="review-highlight">
+                    «Работы было много и каждый день, мне объясняли всё вплоть до "как двигать строчку в таблице". Очень хороший толчок без "воды"!»
+                </div>
+                <div class="review-img-wrap">
+                    <img src="review_ekaterina.png" alt="Отзыв Екатерины — сопровождение">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ HOW TO BUY ═══════════════════════ -->
+<section class="how">
+    <div class="container">
+        <div class="section-header">
+            <h2>Как купить</h2>
+            <p>Всё просто — 3 шага</p>
+        </div>
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="how-step-num">1</div>
+                <h4>Выбери продукт</h4>
+                <p>Нажми на кнопку нужного предложения — она откроет Telegram</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">2</div>
+                <h4>Напиши кодовое слово</h4>
+                <p>Отправь мне кодовое слово из кнопки — я пришлю реквизиты для оплаты</p>
+            </div>
+            <div class="how-step">
+                <div class="how-step-num">3</div>
+                <h4>Получи доступ</h4>
+                <p>Сразу после оплаты получишь всё необходимое — обычно в течение часа</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FINAL CTA ═══════════════════════ -->
+<section class="final-cta">
+    <div class="container">
+        <h2>Скидки закрываются<br><span style="color:var(--gold)">16 сентября</span> 🎂</h2>
+        <p>После праздника — только стандартные цены. Это один раз в год.</p>
+
+        <div class="countdown" style="justify-content:center; margin-bottom: 48px;">
+            <div class="countdown-item">
+                <span class="countdown-num" id="cd-days-2">00</span>
+                <div class="countdown-unit">дней</div>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-num" id="cd-hours-2">00</span>
+                <div class="countdown-unit">часов</div>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-num" id="cd-mins-2">00</span>
+                <div class="countdown-unit">минут</div>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-num" id="cd-secs-2">00</span>
+                <div class="countdown-unit">секунд</div>
+            </div>
+        </div>
+
+        <div class="final-buttons">
+            <a href="https://t.me/katikok_smm" target="_blank" class="final-btn final-btn-gold">
+                🎁 Уроки от 1 000 ₽
+            </a>
+            <a href="https://katikokbeh.github.io/starterpack-landing/" target="_blank" class="final-btn final-btn-purple">
+                📦 Стартер-пак 995 ₽
+            </a>
+            <a href="https://t.me/katikok_smm" target="_blank" class="final-btn final-btn-purple">
+                🎯 Консультация 2 500 ₽
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="https://www.instagram.com/beh__kate/" target="_blank">Instagram</a>
+            <a href="https://t.me/beh_kate" target="_blank">Telegram</a>
+            <a href="https://t.me/katikok_smm" target="_blank">Написать напрямую</a>
+        </div>
+        <p>
+            Агентство «Фиолетовая Морковь» | Бехтерева Екатерина<br>
+            ИП 027501432906 | ОГРНИП 320028000100045<br>
+            450015, Уфа | ek.behtereva2017@yandex.ru | © 2026
+        </p>
+    </div>
+</footer>
+
+<script>
+    // ── COUNTDOWN ──
+    function updateCountdown() {
+        const target = new Date('2026-09-16T23:59:59+03:00').getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        if (diff <= 0) {
+            ['days','hours','mins','secs'].forEach(u => {
+                const el1 = document.getElementById('cd-' + u);
+                const el2 = document.getElementById('cd-' + u + '-2');
+                if (el1) el1.textContent = '00';
+                if (el2) el2.textContent = '00';
+            });
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const pad = n => String(n).padStart(2, '0');
+
+        document.getElementById('cd-days').textContent = pad(days);
+        document.getElementById('cd-hours').textContent = pad(hours);
+        document.getElementById('cd-mins').textContent = pad(mins);
+        document.getElementById('cd-secs').textContent = pad(secs);
+        document.getElementById('cd-days-2').textContent = pad(days);
+        document.getElementById('cd-hours-2').textContent = pad(hours);
+        document.getElementById('cd-mins-2').textContent = pad(mins);
+        document.getElementById('cd-secs-2').textContent = pad(secs);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── CONFETTI ──
+    const colors = ['#f5c842','#a78bfa','#7c3aed','#c4b5fd','#fde68a','#ffffff'];
+    const container = document.getElementById('confetti');
+
+    for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.width = (Math.random() * 8 + 4) + 'px';
+        piece.style.height = (Math.random() * 8 + 4) + 'px';
+        piece.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        piece.style.animationDelay = (Math.random() * 8) + 's';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        container.appendChild(piece);
+    }
+</script>
+</body>
+</html>
